@@ -1,16 +1,16 @@
+//to use process.env for deployment
 const dotenv = require('dotenv')
 dotenv.config()
+//for mongo db 
 const mongoose = require('mongoose');
-// var url = "mongodb+srv://lef:1234@cluster0.diesu.mongodb.net/<dbname>?retryWrites=true&w=majority"
 mongoose.connect(process.env.DB_CONNECT, { useCreateIndex: true, useUnifiedTopology: true, useNewUrlParser: true })
 var db = mongoose.connection
+//to check if there is a connection with db or not 
 db.on('error', console.error.bind(console, 'connection error'))
 db.once('open', function () {
     console.log('connection to db sucessful')
 })
-
-
-
+//Schemas
 let tripsSchema = mongoose.Schema({
     id: { type: Number, unique: true },
     touristid: [Number],
@@ -45,8 +45,10 @@ let payment = mongoose.model("paymentinfo", paymentSchema);
 
 
 module.exports.users = users
-
 module.exports.payment = payment
+module.exports.trips = trips
+
+
 
 
 
