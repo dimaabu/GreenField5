@@ -5,12 +5,13 @@ var cookieParser = require('cookie-parser')
 
 const bodyParser = require('body-parser');
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser())
 
 
-app.use(express.static(__dirname + '/frontend/build'))
+app.use(express.static(__dirname + '/frontend/index.html'))
 
 
 if (process.env.NODE_ENV === 'production') {

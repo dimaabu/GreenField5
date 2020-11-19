@@ -3,16 +3,10 @@ import Navbar from './components/Homepage/Navbar';
 import Footer from './components/Homepage/Footer';
 import Home from './components/Homepage/Home'
 import Profile from './components/user/Profile';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import Authpage from './components/payment/payment'
-=======
-=======
+
+
 // import $ from 'jquery'
->>>>>>> 0aa797d12001e3b9fd971d9284e58729b37820e9
 
-
->>>>>>> ecdf53b99c59981514632c8108e76a432b872949
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.css';
 import Trips from './components/Homepage/Cards'
@@ -23,13 +17,16 @@ import Payment from './components/payment/payment'
 
 
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       islogin: true,
+      hello: 'hello for reeal'
     }
     this.changeLogInStatus = this.changeLogInStatus.bind(this)
+    this.getup = this.getup.bind(this)
 
   }
   changeLogInStatus() {
@@ -37,36 +34,26 @@ class App extends React.Component {
       islogin: !this.state.islogin,
       tokenin: ''
     })
-    document.documentElement.scrollTop = 0;
   }
 
+  getup() {
+    console.log('all the way from the app, Hi!')
+  }
   componentDidMount() {
     this.setState({
       tokenin: document.cookie
     })
+    document.documentElement.scrollTop = 0;
 
-    //   $.ajax({
-    //     type: "get",
-    //     url: "/check",
-    //     success: function (res) {
-    //       console.log("it's working")
-    //       this.setState({
-    //         tokenin: res.cookies
-    //       })
-    //     },
-    //     error: function (error) {
-
-    //       console.log(error.status)
-
-    //     }
-    //   })
   }
   render() {
     if (!this.state.tokenin === '') {
       console.log('hi')
     }
     const { islogin } = this.state
+    let comp
     if (islogin) {
+
       return (
         <>
           <Router>
@@ -89,22 +76,6 @@ class App extends React.Component {
         </>
 
 
-<<<<<<< HEAD
-  return (
-    <>
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/trips" exact component={Authpage} />
-          <Route path="/sign-up" exact component={Login} />
-          <Route path="/user" exact component={Profile} />
-
-        </Switch>
-        <Footer />
-      </Router>
-    </>
-=======
       )
     }
     else {
@@ -121,14 +92,54 @@ class App extends React.Component {
               />
               <Route path="/user" exact component={Profile} />
               <Route path="/trip" exact component={Trip} />
->>>>>>> ecdf53b99c59981514632c8108e76a432b872949
 
             </Switch>
             <Footer />
           </Router>
         </>
       )
+
+      comp = <Route
+        path='/sign-up'
+        render={(props) => <Signup toggleLogin={this.changeLogInStatus} />}
+      />
     }
+     {
+      comp = <Route
+        path='/sign-up'
+        render={(props) => <Login toggleLogin={this.changeLogInStatus} hello='hello' />}
+      />
+
+    }
+    return (
+      <>
+        <Router>
+          <Navbar />
+          <Switch>
+            {comp}
+            <Route
+              path="/"
+              exact render={(props) => <Home getup={this.getup} hello={this.state.hello} />}
+            />
+            <Route
+              path="/trips"
+              render={(props) => <Trips getup={this.getup} lable1={this.state.hello} />}
+            />
+            {/* <Route path="/" exact component={Home} /> */}
+            {/* <Route path="/trips" exact component={Trips} /> */}
+            <Route path="/sign-up" exact component={Signup} />
+            <Route path="/user" exact component={Profile} />
+            <Route path="/trip" exact component={Trip} />
+
+          </Switch>
+          <Footer />
+        </Router>
+      </>
+
+
+    )
+
+
   }
 }
 
