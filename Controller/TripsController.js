@@ -1,6 +1,4 @@
 const trips = require("../DataModel").trips
-<<<<<<< HEAD
-=======
 const tripsData = require('../Data/trips.json')
 exports.tripsList = (req, res) => {
     trips.find({}, (err, trips) => {
@@ -15,8 +13,8 @@ exports.updateTrip = (req, res) => {
             res.send(err);
         if (trip) {
 
-            trip.touristid.push(req.body.touristid);
-            trips.updateOne({ _id: trip._id }, { touristid: trip.touristid }, (err, data) => {
+            trip.idOfTourist.push(req.body.touristid);
+            trips.updateOne({ _id: trip._id }, { idOfTourist: trip.idOfTourist }, (err, data) => {
 
                 trips.findOne({ _id: req.body.id }, (err, trip) => {
                     if (err)
@@ -42,4 +40,3 @@ exports.fillTrips = (req, res) => {
     res.send(tripsData)
 
 }
->>>>>>> 4ae08cebd83d723ab7fe1410ccc3c565ca2a08ea
