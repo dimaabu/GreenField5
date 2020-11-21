@@ -3,7 +3,7 @@ import '../../../src/App.css';
 import './A-Style.css';
 import Section from './Section';
 import AboutUs from './AboutUs';
-import Cards from './Cards';
+import Cards from './HomeCards';
 
 class Home extends React.Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class Home extends React.Component {
             <>
                 <Section />
                 <AboutUs />
-                <Cards lable1={this.props.hello} testtrips={this.props.testtrips} getup={this.props.getup} trip={this.props.trip} paymentCheck={this.props.paymentCheck} />
+                <Cards lable1={this.props.hello} testtrips={this.props.testtrips} userid={this.props.userid} getup={this.props.getup} trip={this.props.trip} paymentCheck={this.props.paymentCheck} />
             </>
         )
     }
