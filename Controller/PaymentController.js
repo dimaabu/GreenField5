@@ -7,7 +7,8 @@ exports.payment = (req, res) => {
     var ex = new Date(req.body.exDate)
     var cvv = req.body.cvv
     var creditCard = req.body.creditCard
-      if (err) {
+    PaymentModel.findOne({ cvv: cvv, creditCard: creditCard, exDate: ex }, (err, data) => {
+        if (err) {
             return res.status(400).send('wrong format')
         }
         if (!data)
@@ -19,7 +20,7 @@ exports.payment = (req, res) => {
             else
                 return res.status(406).send('expired')
         }
-   
+    })
 }
 
 exports.check = (req, res) => { console.log("kill me please", req.cookies); return (req.cookies) }

@@ -4,8 +4,6 @@ import Footer from './components/Homepage/Footer';
 import Home from './components/Homepage/Home'
 import $ from 'jquery'
 
-// import $ from 'jquery'
-
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.css';
 import Trips from './components/Homepage/Cards'
@@ -135,52 +133,6 @@ class App extends React.Component {
     let comp
     let nav
     if (islogin) {
-
-      return (
-        <>
-          <Router>
-            <Navbar />
-            <Switch>
-              <Route
-                path='/sign-up'
-                render={(props) => <Signup toggleLogin={this.changeLogInStatus} />}
-              />
-
-              <Route path="/" exact component={Home} />
-              <Route path="/trips" exact component={Trips} />
-              {/* <Route path="/sign-up" exact component={Signup} /> */}
-              <Route path="/user" exact component={Payment} />
-              <Route path="/trip" exact component={Trip} />
-
-            </Switch>
-            <Footer />
-          </Router>
-        </>
-
-
-      )
-    }
-    else {
-      return (
-        <>
-          <Router>
-            <Navbar />
-            <Switch>
-              <Route path="/" exact component={Home} />
-              <Route path="/trips" exact component={Trip} />
-              <Route
-                path='/sign-up'
-                render={(props) => <Login toggleLogin={this.changeLogInStatus} />}
-              />
-              <Route path="/user" exact component={Profile} />
-              <Route path="/trip" exact component={Trip} />
-
-            </Switch>
-            <Footer />
-          </Router>
-        </>
-      )
-
       comp = <Route
         path='/sign-up'
         render={(props) => <Signup toggleLogin={this.changeLogInStatus} />}
@@ -188,12 +140,11 @@ class App extends React.Component {
 
 
     }
-     {
+    else {
       comp = <Route
         path='/sign-up'
         render={(props) => <Login toggleuser={this.changeUserStatus} toggleLogin={this.changeLogInStatus} hello='hello' />}
       />
-
     }
     if (this.state.tokenin !== `authToken=`) {
       console.log('token')
