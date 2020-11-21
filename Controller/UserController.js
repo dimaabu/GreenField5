@@ -86,17 +86,6 @@ exports.userlogout = (req, res) => {
 
 
 }
-<<<<<<< HEAD
-exports.userTrips = (req, res) => {
-    //var usertrip = req.body.trips
-    UserModel.findOne({ _id: req.body._id }, (err, userData) => {
-        if (!userData) {
-            console.log('user not found')
-            return res.status(404).send('not found user')
-        } else {
-            console.log(userData.trips)
-            res.send(userData.trips)
-=======
 
 exports.checkuser = (req, res) => { return (req.user) }
 
@@ -113,7 +102,6 @@ exports.getuserinfo = (req, res) => {
         }
         else {
             return res.status(200).send(userData)
->>>>>>> 69ea9f30faa4b44d4b40d4223cc15159ed0442c8
         }
     })
 }
